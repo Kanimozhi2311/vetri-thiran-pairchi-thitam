@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ comic.title }} | {{ app_name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+<main class="container preview">
+  <header class="preview-header">
+    <div><span class="eyebrow">COMIC PREVIEW</span><h1>{{ comic.title }}</h1>
+    <p>Review each panel before downloading the finished PDF.</p></div>
+    <a class="secondary-button" href="/">← Create Another</a>
+  </header>
+
+  <section class="panel-list">
+  {% for panel in comic.panels %}
+    <article class="comic-panel">
+      <div class="panel-number">PANEL {{ panel.panel_number }}</div>
+      <h2>{{ panel.title }}</h2>
+      <img src="{{ panel.image_url }}" alt="Illustration for panel {{ panel.panel_number }}">
+      <p class="scene"><em>{{ panel.scene_description }}</em></p>
+      <div class="story-copy">
+        <p class="caption">{{ panel.caption }}</p>
+        <p>{{ panel.narration }}</p>
+        <p class="dialogue">{{ panel.dialogue }}</p>
+      </div>
+      <details><summary>Image prompt reference</summary><p>{{ panel.image_prompt }}</p></details>
+    </article>
+  {% endfor %}
+  </section>
+
+  <section class="download-card">
+    <h2>Your comic is ready.</h2>
+    <p>All five panels, narration, captions, and dialogue are included in the PDF.</p>
+    <a class="primary-button inline-button" href="{{ comic.pdf_url }}">⬇ Download Your Comic as PDF</a>
+  </section>
+</main>
+</body>
+</html>

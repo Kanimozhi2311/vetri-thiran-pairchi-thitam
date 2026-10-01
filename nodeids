@@ -1,0 +1,8 @@
+[
+  "tests/test_api.py::test_health",
+  "tests/test_api.py::test_homepage",
+  "tests/test_api.py::test_json_generation_in_demo_mode",
+  "tests/test_services.py::test_demo_outline_has_five_panels",
+  "tests/test_services.py::test_demo_story_matches_outline",
+  "tests/test_services.py::test_layout_joins_images_and_story"
+]

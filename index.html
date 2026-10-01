@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ app_name }} | AI Comic Creator</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body class="page-home">
+<main class="container hero">
+  <section class="hero-copy">
+    <span class="eyebrow">AI COMIC STORY CREATOR</span>
+    <h1>Turn an idea into a <span>five-panel comic.</span></h1>
+    <p>Describe your story, choose a character, setting, tone, and visual style.
+       ComicCraft builds the outline, narration, illustrations, and PDF for you.</p>
+  </section>
+
+  {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+
+  <form class="comic-form" action="/generate" method="post" id="comic-form">
+    <label>Story Prompt
+      <textarea name="story_prompt" rows="5" maxlength="2000" required
+        placeholder="A brave fox exploring an enchanted forest...">{{ form.story_prompt if form else '' }}</textarea>
+    </label>
+    <div class="grid two">
+      <label>Main Character Name
+        <input name="character_name" maxlength="80" required
+          value="{{ form.character_name if form else '' }}" placeholder="Lumi">
+      </label>
+      <label>Setting
+        <select name="setting"><option>forest</option><option>school</option><option>space</option><option>city</option></select>
+      </label>
+    </div>
+    <div class="grid two">
+      <label>Story Tone
+        <select name="tone"><option>light-hearted</option><option>dramatic</option><option>poetic</option><option>funny</option></select>
+      </label>
+      <label>Art Style
+        <select name="art_style"><option>anime</option><option>pixel art</option><option>comic book</option><option>realistic</option></select>
+      </label>
+    </div>
+    <button class="primary-button" type="submit" id="generate-button"><span>✨ Generate My Comic</span></button>
+    <p class="form-note">Demo mode works without API keys. Real generation is enabled in <code>.env</code>.</p>
+  </form>
+</main>
+<script src="{{ url_for('static', path='js/app.js') }}"></script>
+</body>
+</html>
